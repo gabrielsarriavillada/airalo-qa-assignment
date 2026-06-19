@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('shows the selected 7 days unlimited Japan eSIM price in the cart', async ({ page }) => {
-  await page.goto('https://www.airalo.com/');
+  await page.goto('/');
 
   // Search "Japan"
   await page.locator("[data-testid=search-input_text-field]").fill("Japan");
