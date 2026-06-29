@@ -2,6 +2,7 @@ import { APIRequestContext, expect } from '@playwright/test';
 import { OrderResponse } from '../models/order-response.model';
 import { TokenResponse } from '../models/token-response.model';
 import { ESimResponse } from '../models/esim-response.model';
+import { OrderRequest } from '../models/order-request.model';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -26,17 +27,17 @@ export class AiraloApi {
         return body.data.access_token;
     }
 
-    async submitOrder(token: string): Promise<OrderResponse> {
+    async submitOrder(token: string, order: OrderRequest): Promise<OrderResponse> {
         const response = await this.request.post("/v2/orders", {
             headers: {
                 Authorization: `Bearer ${token}`,
                 Accept: "application/json"
             },
             form: {
-                quantity: "6",
-                package_id: "moshi-moshi-7days-1gb",
-                type: "sim",
-                description: `airalo-qa-${Date.now()}`,
+                quantity: order.quantity.toString(),
+                package_id: order.package_id,
+                type: order.type,
+                description: order.description,
             },
         });
 
