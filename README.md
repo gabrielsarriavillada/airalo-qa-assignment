@@ -54,8 +54,10 @@ npx playwright show-report
 ## Design Decisions
 
 - Playwright was used for both UI and API automation to keep the solution consistent.
-- API interactions were encapsulated in a dedicated AiraloApi client.
 - UI page interactions are encapsulated using Page Object Model classes to keep tests readable and reduce selector duplication.
+- API interactions were encapsulated in a dedicated AiraloApi client.
+- API request and response payloads are represented using TypeScript interfaces to improve type safety and readability.
+- Order submission accepts a reusable request model rather than embedding request parameters inside the API client.
 - Environment variables are used for credentials and configuration.
 - Test execution is separated into UI and API Playwright projects.
 - Explicit response validation is performed for status codes, messages, order details, and eSIM properties.
@@ -63,8 +65,7 @@ npx playwright show-report
 
 ## Future Improvements
 
-- Add TS reponse models for stronger type safety.
 - Add schema validation for API responses.
 - Integrate execution into a CI/CD pipeline.
 - Implement retry and backoff handling for API rate limiting scenarios.
-- Include the missing `/v2` ending in the API base URL globally, so it doesn't need to be added for every request individually.
+- Separate response validation from the API client to keep assertions in the test layer.
