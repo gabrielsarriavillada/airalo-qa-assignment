@@ -1,4 +1,6 @@
 import { APIRequestContext, expect } from '@playwright/test';
+import { OrderResponse } from '../models/order-response.model';
+import { TokenResponse } from '../models/token-response.model';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -19,11 +21,11 @@ export class AiraloApi {
 
         expect(response.status()).toBe(200);
 
-        const body = await response.json();
+        const body = await response.json() as TokenResponse;
         return body.data.access_token;
     }
 
-    async submitOrder(token: string) {
+    async submitOrder(token: string): Promise<OrderResponse> {
         const response = await this.request.post("/v2/orders", {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -44,7 +46,7 @@ export class AiraloApi {
     async getEsim(token: string, iccid: string) {
         await delay(1000);
         
-        const response = await this.request.get(`v2/sims/${iccid}`, {
+        const response = await this.request.get(`/v2/sims/${iccid}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept: "application/json"
