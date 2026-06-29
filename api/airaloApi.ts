@@ -21,7 +21,7 @@ export class AiraloApi {
 
         expect(response.status()).toBe(200);
 
-        const body = await response.json() as TokenResponse;
+        const body = (await response.json()) as TokenResponse;
         return body.data.access_token;
     }
 
@@ -40,7 +40,7 @@ export class AiraloApi {
         });
 
         expect(response.status()).toBe(200);
-        return response.json();
+        return (await response.json()) as OrderResponse;
     }
 
     async getEsim(token: string, iccid: string) {
