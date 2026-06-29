@@ -1,64 +1,66 @@
 export interface OrderResponse {
-    meta: Meta,
-    data: {
-        id: number,
-        code: string,
-        currency: string,
-        package_id: string,
-        quantity: number,
-        type: string,
-        description: string,
-        esim_type: string,
-        validity: number,
-        package: string,
-        data: string,
-        price: number,
-        pricing_model: string,
-        created_at: string,
-        manual_installation: string,
-        qrcode_installation: string,
-        installation_guides: InstallationGuides,
-        text: string | null,
-        voice: string | null,
-        net_price: number,
-        brand_settings_name: string | null,
-        sims: Sim[],
-    }
+    meta: Meta;
+    data: OrderData;
 }
 
 export interface Meta {
-    message: string,
+    message: string;
+}
+
+export interface OrderData {
+    id: number;
+    code: string;
+    currency: string;
+    package_id: string;
+    quantity: number;
+    type: string;
+    description: string;
+    esim_type: string;
+    validity: number;
+    package: string;
+    data: string;
+    price: number;
+    pricing_model: string;
+    created_at: string;
+    manual_installation: string;
+    qrcode_installation: string;
+    installation_guides: InstallationGuides;
+    text: string | null;
+    voice: string | null;
+    net_price: number;
+    brand_settings_name: string | null;
+    sims: Sim[];
 }
 
 export interface InstallationGuides {
-    en: string,
+    en: string;
 }
 
 export interface Sim {
-    id: number,
-    created_at: string,
-    iccid: string,
-    lpa: string,
-    imsis: string | null,
-    matching_id: string,
-    qrcode: string,
-    qrcode_url: string,
-    airalo_code: string | null,
-    apn_type: string,
-    apn_value: string,
-    is_roaming: boolean,
-    confirmation_code: string | null,
-    apn: ApnSettings,
-    msisdn: string | null,
-    direct_apple_installation_url: string,
+    id: number;
+    created_at: string;
+    iccid: string;
+    lpa: string;
+    imsis: string | null;
+    matching_id: string;
+    qrcode: string;
+    qrcode_url: string;
+    airalo_code: string | null;
+    apn_type: string;
+    apn_value: string;
+    is_roaming: boolean;
+    confirmation_code: string | null;
+    apn: ApnSettings;
+    msisdn: string | null;
+    direct_apple_installation_url: string;
 }
 
 export interface ApnSettings {
-    ios: ApnConfiguration,
-    android: ApnConfiguration,
+    ios: ApnConfiguration;
+    android: ApnConfiguration;
 }
 
 export interface ApnConfiguration {
-    apn_type: string,
-    apn_value: string,
+    apn_type: string;
+    apn_value: string;
 }

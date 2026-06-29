@@ -1,33 +1,35 @@
 import { ApnSettings, Meta } from "./order-response.model"
 
 export interface ESimResponse {
-    data: {
-        id: number,
-        created_at: string,
-        iccid: string,
-        lpa: string,
-        imsis: null | string,
-        matching_id: string,
-        qrcode: string,
-        qrcode_url: string,
-        direct_apple_installation_url: string,
-        voucher_code: null | string,
-        airalo_code: null | string,
-        apn_type: string,
-        apn_value: string,
-        is_roaming: boolean,
-        confirmation_code: null | string,
-        brand_settings_name: null | string,
-        msisdn: null | string,
-        apn: ApnSettings,
-        sharing: Sharing
-        recycled: boolean,
-        recycled_at: null | string,
-    },
-    meta: Meta,
+    data: ESim;
+    meta: Meta;
+}
+
+export interface ESim {
+    id: number; 
+    created_at: string; 
+    iccid: string; 
+    lpa: string; 
+    imsis: string | null; 
+    matching_id: string; 
+    qrcode: string; 
+    qrcode_url: string; 
+    direct_apple_installation_url: string; 
+    voucher_code: string | null; 
+    airalo_code: string | null; 
+    apn_type: string; 
+    apn_value: string; 
+    is_roaming: boolean;
+    confirmation_code: string | null; 
+    brand_settings_name: string | null; 
+    msisdn: string | null; 
+    apn: ApnSettings;
+    sharing: Sharing;
+    recycled: boolean;
+    recycled_at: string | null; 
 }
 
 export interface Sharing {
-    link: string,
-    access_code: string,
+    link: string; 
+    access_code: string; 
 }
