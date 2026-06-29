@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { HomePage } from '../../pages/Homepage';
-import { ESimPage } from '../../pages/ESimPage';
+import { HomePage } from '../../pages/home.page';
+import { ESimPage } from '../../pages/esim.page';
 
 test('shows the selected 7 days unlimited Japan eSIM price in the cart', async ({ page }) => {
   const homePage = new HomePage(page);
