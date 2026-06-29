@@ -1,6 +1,7 @@
 import { APIRequestContext, expect } from '@playwright/test';
 import { OrderResponse } from '../models/order-response.model';
 import { TokenResponse } from '../models/token-response.model';
+import { ESimResponse } from '../models/esim-response.mode';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -43,7 +44,7 @@ export class AiraloApi {
         return (await response.json()) as OrderResponse;
     }
 
-    async getEsim(token: string, iccid: string) {
+    async getEsim(token: string, iccid: string): Promise<ESimResponse> {
         await delay(1000);
         
         const response = await this.request.get(`/v2/sims/${iccid}`, {
@@ -55,6 +56,6 @@ export class AiraloApi {
 
             expect(response.status()).toBe(200);
 
-            return response.json();
+            return (await response.json()) as ESimResponse;
     }
 }
