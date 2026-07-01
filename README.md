@@ -1,4 +1,4 @@
-# Airalo QA Assignment
+# Playwright UI/API Testing
 
 ## Overview
 
